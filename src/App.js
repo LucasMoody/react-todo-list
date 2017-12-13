@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoList from './TodoList';
 
 class App extends Component {
   render() {
@@ -8,20 +9,7 @@ class App extends Component {
           <h1 className="App-title">VANTAiO Todo Liste</h1>
         </header>
         <div className="App-content">
-            <div className="todo-list">
-                <div className="todo-list-item">
-                    Aufräumen
-                </div>
-                <div className="todo-list-item">
-                    Kochen
-                </div>
-                <div className="todo-list-item">
-                    Einkaufen
-                </div>
-                <div className="todo-list-item">
-                    Paket abholen
-                </div>
-            </div>
+            <TodoList/>
         </div>
       </div>
     );
