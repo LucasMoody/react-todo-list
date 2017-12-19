@@ -10,19 +10,23 @@ class TodoList extends Component {
             items: [
                 {
                     name: 'Aufräumen',
-                    done: false
+                    done: false,
+                    favorite: false
                 },
                 {
                     name: 'Kochen',
-                    done: false
+                    done: false,
+                    favorite: false
                 },
                 {
                     name: 'Einkaufen',
-                    done: false
+                    done: false,
+                    favorite: false
                 },
                 {
                     name: 'Paket abholen',
-                    done: false
+                    done: false,
+                    favorite: false
                 }
             ]
         }
@@ -31,6 +35,12 @@ class TodoList extends Component {
     onItemClicked = (idx, done) => {
         const newItems = [].concat(this.state.items);
         newItems[idx].done = done;
+        this.setState({items: newItems});
+    }
+
+    onFavoriteClicked = (idx, favorite) => {
+        const newItems = [].concat(this.state.items);
+        newItems[idx].favorite = favorite;
         this.setState({items: newItems});
     }
 
@@ -50,7 +60,11 @@ class TodoList extends Component {
         return (
             <div className="todo-list">
                 <Input type="text" fluid placeholder="Einen Eintrag hinzufügen" icon="plus" iconPosition="left" onKeyPress={this.onEnter}/>
-                {this.state.items.map((item, idx) => <TodoListItem key={idx} name={item.name} done={item.done} onItemClicked={this.onItemClicked.bind(this, idx)}/>)}
+                {
+                    this.state.items
+                    .sort((itemA, itemB) => itemB.favorite - itemA.favorite)
+                    .map((item, idx) => <TodoListItem key={idx} name={item.name} done={item.done} onItemClicked={this.onItemClicked.bind(this, idx)} favorite={item.favorite} onFavoriteClicked={this.onFavoriteClicked.bind(this, idx)}/>)
+                }
             </div>
         );
     }
