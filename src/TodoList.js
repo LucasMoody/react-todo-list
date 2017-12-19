@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoListItem from './TodoListItem';
+import { Input } from 'semantic-ui-react';
 
 class TodoList extends Component {
 
@@ -48,7 +49,7 @@ class TodoList extends Component {
     render() {
         return (
             <div className="todo-list">
-                <input type="text" style={{width: '100%'}} onKeyPress={this.onEnter}/>
+                <Input type="text" fluid placeholder="Einen Eintrag hinzufügen" icon="plus" iconPosition="left" onKeyPress={this.onEnter}/>
                 {this.state.items.map((item, idx) => <TodoListItem key={idx} name={item.name} done={item.done} onItemClicked={this.onItemClicked.bind(this, idx)}/>)}
             </div>
         );
